@@ -6,7 +6,7 @@
  * @package app\core
  */
 
-namespace app\core;
+namespace App\core;
 
 class Router {
 
