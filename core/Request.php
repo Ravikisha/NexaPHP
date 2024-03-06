@@ -8,13 +8,28 @@ namespace app\core;
  * @package core
  */
 
- class Request {
-    public function getPath(){
+class Request
+{
+    /**
+     * Get the current request path
+     * @return string
+     */
+    public function getPath()
+    {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $position = strpos($path, '?');
+        if ($position === false) {
+            return $path;
+        }
+        return substr($path, 0, $position);
     }
 
-    public function getMethod(){
-
+    /**
+     * Get the current request method
+     * @return string
+     */
+    public function getMethod()
+    {
+        return strtolower($_SERVER['REQUEST_METHOD']);
     }
- }
+}

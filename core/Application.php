@@ -20,6 +20,10 @@ class Application {
         $this->router = new Router($this->request);
     }
 
+    /**
+     * Run the application
+     * @return void
+     */
     public function run()
     {
         $this->router->resolve();
