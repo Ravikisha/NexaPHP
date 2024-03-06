@@ -1,0 +1,16 @@
+{
+    "name": "ravi/nexa-php",
+    "description": "Nexa PHP SDK",
+    "authors": [
+        {
+            "name": "Ravi",
+            "email": "ravikishan63392@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "require": {}
+}
