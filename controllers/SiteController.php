@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\core\Application;
 use App\core\Controller;
+use App\core\Request;
 
 class SiteController extends Controller{
 
@@ -16,10 +17,11 @@ class SiteController extends Controller{
     }
 
     public function contact() {
-        return Application::$app->router->renderView('contact');
+        return $this->render('contact');
     }
 
-    public function handleContact() {
+    public function handleContact(Request $request) {
+        $body = $request->getBody();
         return "Handling submitted data.";
     }
 }
