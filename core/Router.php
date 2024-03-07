@@ -68,7 +68,8 @@ class Router {
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
 
         return call_user_func($callback, $this->request, $this->response);
@@ -80,7 +81,7 @@ class Router {
      * @return string
      */
     public function renderView($view, $params = []){
-        $layoutContent = $this->layoutContent('main');
+        $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
@@ -91,7 +92,7 @@ class Router {
      * @return string
      */
     public function renderContent($viewContent){
-        $layoutContent = $this->layoutContent('main');
+        $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -100,7 +101,8 @@ class Router {
      * @param string $layout
      * @return string
      */
-    public function layoutContent($layout){
+    public function layoutContent($layout = null){
+        $layout = $layout ?? Application::$app->controller->layout;
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();
