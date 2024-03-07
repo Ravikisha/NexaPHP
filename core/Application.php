@@ -5,19 +5,31 @@ namespace App\core;
 /**
  * Class Application
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package core
+ * @package App\core
  * @property Router $router
+ * @property Request $request
  */
 
 class Application {
 
+    public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
+    public Response $response;
+    public static Application $app;
     
-    public function __construct()
+    /**
+     * Application constructor
+     * @param string|null $rootPath
+     * @return void
+     */
+    public function __construct($rootPath = null)
     {
+        self::$ROOT_DIR = $rootPath ?? dirname(__DIR__);
+        self::$app = $this;
         $this->request = new Request();
-        $this->router = new Router($this->request);
+        $this->response = new Response();
+        $this->router = new Router($this->request, $this->response);
     }
 
     /**
@@ -26,6 +38,6 @@ class Application {
      */
     public function run()
     {
-        $this->router->resolve();
+        echo $this->router->resolve();
     }
 }

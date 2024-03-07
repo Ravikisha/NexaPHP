@@ -5,7 +5,7 @@ namespace App\core;
 /**
  * Class Application
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package core
+ * @package App\core
  */
 
 class Request

@@ -1,0 +1,2 @@
+<h1> Contact Page </h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto iure sint corporis enim sit! Quia minima laborum, corporis sapiente, dolores aspernatur debitis, vel praesentium quos totam asperiores quod omnis. Laudantium distinctio hic doloribus facilis tempore sequi praesentium quia. Pariatur, ipsum impedit error placeat fuga magnam!</p>
