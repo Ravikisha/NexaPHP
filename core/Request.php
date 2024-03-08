@@ -32,7 +32,10 @@ class Request
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
-
+    /**
+     * Check if the current request is a get request
+     * @return bool
+     */
     public function isGet()
     {
         return $this->method() === 'get';
@@ -57,5 +60,39 @@ class Request
             }
         }
         return $body;
+    }
+
+    public function getFormData($data)
+    {
+        $body = [];
+        foreach ($data as $key => $value) {
+            $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        return $body;
+    }
+
+    public function getParams()
+    {
+        $params = [];
+        $path = $this->getPath();
+        $path = explode('/', $path);
+        foreach ($path as $key => $value) {
+            if ($key === 0) {
+                continue;
+            }
+            $params[$key] = $value;
+        }
+        return $params;
+    }
+
+    public function getValue($key)
+    {
+        if ($this->method() === 'get') {
+            return filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }else if ($this->method() === 'post') {
+            return filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        }else {
+            return '';
+        }
     }
 }
