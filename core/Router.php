@@ -9,7 +9,8 @@
 
 namespace App\core;
 
-class Router {
+class Router
+{
 
     public Request $request;
     public Response $response;
@@ -58,12 +59,12 @@ class Router {
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
-        if($callback === false){
+        if ($callback === false) {
             $this->response->setStatusCode(404);
             return $this->renderView("_404");
         }
 
-        if(is_string($callback)){
+        if (is_string($callback)) {
             return $this->renderView($callback);
         }
 
@@ -78,9 +79,11 @@ class Router {
     /**
      * Render a view
      * @param string $view
+     * @param array $params
      * @return string
      */
-    public function renderView($view, $params = []){
+    public function renderView($view, $params = [])
+    {
         $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
@@ -91,7 +94,8 @@ class Router {
      * @param string $viewContent
      * @return string
      */
-    public function renderContent($viewContent){
+    public function renderContent($viewContent)
+    {
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
@@ -101,7 +105,8 @@ class Router {
      * @param string $layout
      * @return string
      */
-    public function layoutContent($layout = null){
+    public function layoutContent($layout = null)
+    {
         $layout = $layout ?? Application::$app->controller->layout;
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
@@ -111,11 +116,13 @@ class Router {
     /**
      * Render only view
      * @param string $view
+     * @param array $params
      * @return string
      */
-    public function renderOnlyView($view, $params){
+    public function renderOnlyView($view, $params)
+    {
 
-        foreach($params as $key => $value){
+        foreach ($params as $key => $value) {
             $$key = $value;
         }
 

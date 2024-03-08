@@ -42,11 +42,20 @@ class Application {
         echo $this->router->resolve();
     }
 
+    /**
+     * Get the current controller
+     * @return Controller
+     */
     public function getController()
     {
         return $this->controller;
     }
 
+    /**
+     * Set the current controller
+     * @param Controller $controller
+     * @return void
+     */
     public function setController($controller)
     {
         $this->controller = $controller;
