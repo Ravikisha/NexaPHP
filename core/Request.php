@@ -41,11 +41,19 @@ class Request
         return $this->method() === 'get';
     }
 
+    /**
+     * Check if the current request is a post request
+     * @return bool
+     */
     public function isPost()
     {
         return $this->method() === 'post';
     }
-
+    
+    /**
+     * Get the current request body
+     * @return array
+     */
     public function getBody()
     {
         $body = [];
@@ -62,6 +70,10 @@ class Request
         return $body;
     }
 
+    /**
+     * Get the form data
+     * @return array
+     */
     public function getFormData($data)
     {
         $body = [];
@@ -70,7 +82,10 @@ class Request
         }
         return $body;
     }
-
+    /**
+     * Get the current request params
+     * @return array
+     */
     public function getParams()
     {
         $params = [];
@@ -85,6 +100,10 @@ class Request
         return $params;
     }
 
+    /**
+     * Get the current request value
+     * @return string
+     */
     public function getValue($key)
     {
         if ($this->method() === 'get') {
