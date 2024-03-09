@@ -2,7 +2,7 @@
 
 namespace App\core;
 
-class Controller
+abstract class Controller
 {
     /**
      * Set the layout for the view

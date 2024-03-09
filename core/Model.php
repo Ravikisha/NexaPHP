@@ -1,12 +1,17 @@
 <?php
 
-class Model {
+namespace App\core;
+
+abstract class Model {
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
     public array $errors = [];
+
+    
+    abstract public function rules(): array;
 
     public function loadData($data)
     {
@@ -16,6 +21,7 @@ class Model {
             }
         }
     }
+
 
     public function validate()
     {
