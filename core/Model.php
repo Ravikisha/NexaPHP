@@ -2,7 +2,8 @@
 
 namespace App\core;
 
-abstract class Model {
+abstract class Model
+{
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
     public const RULE_MIN = 'min';
@@ -10,7 +11,7 @@ abstract class Model {
     public const RULE_MATCH = 'match';
     public array $errors = [];
 
-    
+
     abstract public function rules(): array;
 
     public function loadData($data)
@@ -25,7 +26,7 @@ abstract class Model {
 
     public function validate()
     {
-        foreach ($this->rules as $attribute => $rules) {
+        foreach ($this->rules() as $attribute => $rules) {
             $value = $this->{$attribute};
             foreach ($rules as $rule) {
                 $ruleName = $rule;
@@ -66,7 +67,8 @@ abstract class Model {
         $this->errors[$attribute][] = $message;
     }
 
-    public function errorMessages(){
+    public function errorMessages()
+    {
         return [
             self::RULE_REQUIRED => 'This field is required',
             self::RULE_EMAIL => 'This field must be a valid email address',
@@ -74,5 +76,15 @@ abstract class Model {
             self::RULE_MAX => 'Max length of this field must be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
         ];
+    }
+
+    public function hasError($attribute)
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? false;
     }
 }
