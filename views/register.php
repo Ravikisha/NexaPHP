@@ -31,11 +31,22 @@
     }
     .invalid-feedback {
         color: red;
+        font-size: 12px;
     }
-    
+
 </style>
 <h1>Register</h1>
 <hr>
+
+<?php echo App\core\form\Form::begin('', "post") ?>
+    <?php echo $form->field($model, 'firstName') ?>
+    <?php echo $form->field($model, 'lastName') ?>
+    <?php echo $form->field($model, 'email') ?>
+    <?php echo $form->field($model, 'password')->passwordField() ?>
+    <?php echo $form->field($model, 'passwordConfirm')->passwordField() ?>
+    <?php echo $form->submit('Register') ?>
+<?php echo App\core\form\Form::end() ?>
+
 <form action="register" method="post">
     <input type="text" name="firstName" placeholder="First Name" value="<?php echo $model->firstName; ?>" class="<?php echo $model->hasError('firstName') ? 'is-invalid' : '' ?>">
     <div class="invalid-feedback">
