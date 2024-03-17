@@ -2,6 +2,7 @@
 
 namespace App\core\form;
 
+use App\core\Model;
 
 class Form {
 
@@ -15,18 +16,18 @@ class Form {
     }
 
     public function field(Model $model, $attribute) {
-        return new InputField($model, $attribute);
+        return new Field($model, $attribute);
     }
 
-    public function textarea(Model $model, $attribute) {
-        return new TextareaField($model, $attribute);
-    }
+    // public function textarea(Model $model, $attribute) {
+    //     return new TextareaField($model, $attribute);
+    // }
 
-    public function select(Model $model, $attribute, $options) {
-        return new SelectField($model, $attribute, $options);
-    }
+    // public function select(Model $model, $attribute, $options) {
+    //     return new SelectField($model, $attribute, $options);
+    // }
 
-    public function submit($label) {
-        return new SubmitButton($label);
-    }
+    // public function submit($label) {
+    //     return new SubmitButton($label);
+    // }
 }

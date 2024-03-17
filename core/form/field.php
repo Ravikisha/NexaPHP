@@ -9,7 +9,7 @@ class Field
 
     public Model $model;
     public string $attribute;
-    public $type;
+    public string $type;
 
     public function __construct($model, $attribute)
     {
