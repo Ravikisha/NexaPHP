@@ -2,11 +2,13 @@
 
 namespace App\core\form;
 
+use App\core\Model;
+
 class Field
 {
 
-    public $model;
-    public $attribute;
+    public Model $model;
+    public string $attribute;
     public $type;
 
     public function __construct($model, $attribute)

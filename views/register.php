@@ -38,7 +38,7 @@
 <h1>Register</h1>
 <hr>
 
-<?php echo App\core\form\Form::begin('', "post") ?>
+<?php $form = App\core\form\Form::begin('', "post") ?>
     <?php echo $form->field($model, 'firstName') ?>
     <?php echo $form->field($model, 'lastName') ?>
     <?php echo $form->field($model, 'email') ?>
