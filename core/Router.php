@@ -5,6 +5,8 @@
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
  * @package App\core
  * @property Request $request
+ * @property Response $response
+ * @property array $routes
  */
 
 namespace App\core;
