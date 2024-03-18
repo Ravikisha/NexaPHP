@@ -8,6 +8,9 @@ namespace App\core;
  * @package App\core
  * @property Router $router
  * @property Request $request
+ * @property Response $response
+ * @property Controller $controller
+ * @property Application $app
  */
 
 class Application {
