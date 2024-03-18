@@ -2,6 +2,14 @@
 
 namespace App\core;
 
+
+/**
+ * Model class
+ * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
+ * @package App\core
+ * @abstract
+ * @property array $errors
+ */
 abstract class Model
 {
     public const RULE_REQUIRED = 'required';
@@ -9,11 +17,24 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+
+    /**
+     * @var array $errors
+     */
     public array $errors = [];
 
-
+    /**
+     * Abstract method rules
+     * @return array
+     * @abstract
+     */
     abstract public function rules(): array;
 
+    /**
+     * Load data
+     * @param array $data
+     * @return void
+     */
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
@@ -23,7 +44,10 @@ abstract class Model
         }
     }
 
-
+    /**
+     * Validate the data
+     * @return bool
+     */
     public function validate()
     {
         foreach ($this->rules() as $attribute => $rules) {
@@ -53,6 +77,13 @@ abstract class Model
         return empty($this->errors);
     }
 
+    /**
+     * Add error for rule
+     * @param string $attribute
+     * @param string $rule
+     * @param array $params
+     * @return void
+     */
     public function addErrorForRule(string $attribute, string $rule, $params = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
@@ -62,11 +93,22 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
+    /**
+     * Add error
+     * @param string $attribute
+     * @param string $message
+     * @return void
+     */
     public function addError(string $attribute, string $message)
     {
         $this->errors[$attribute][] = $message;
     }
 
+    /**
+     * Error messages
+     * @return array
+     * @abstract
+     */
     public function errorMessages()
     {
         return [
@@ -78,21 +120,40 @@ abstract class Model
         ];
     }
 
+    /**
+     * Has error
+     * @param string $attribute
+     * @return bool
+     */
     public function hasError($attribute)
     {
         return $this->errors[$attribute] ?? false;
     }
 
+    /**
+     * Get first error
+     * @param string $attribute
+     * @return string|bool
+     */
     public function getFirstError($attribute)
     {
         return $this->errors[$attribute][0] ?? false;
     }
 
+    /**
+     * Labels
+     * @return array
+     */
     public function labels(): array
     {
         return [];
     }
 
+    /**
+     * Get label
+     * @param string $attribute
+     * @return string
+     */
     public function getLabel($attribute)
     {
         return $this->labels()[$attribute] ?? $attribute;
