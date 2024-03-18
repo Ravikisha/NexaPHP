@@ -2,6 +2,14 @@
 
 namespace App\core;
 
+/**
+ * Controller class
+ * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
+ * @package App\core
+ * @abstract
+ * @property string $layout
+ */
+
 abstract class Controller
 {
     /**
@@ -9,6 +17,12 @@ abstract class Controller
      * @var string
      */
     public string $layout = 'main';
+
+    /**
+     * Set the layout
+     * @param string $layout
+     * @return void
+     */
     public function setLayout($layout)
     {
         $this->layout = $layout;

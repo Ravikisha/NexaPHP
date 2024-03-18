@@ -32,7 +32,7 @@ class Router
     /**
      * Define a get request
      * @param string $path
-     * @param callable $callback || string $view
+     * @param callable|string $callback
      * @return void
      */
     public function get($path, $callback)
