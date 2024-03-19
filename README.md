@@ -20,7 +20,7 @@ NexaPHP is a lightweight PHP framework designed to simplify the development of w
 
 To get started with NexaPHP, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/NexaPHP.git`
+1. Clone the repository: `git clone https://github.com/ravikisha/NexaPHP.git`
 2. Configure your web server to point to the `public` directory.
 3. Customize the configuration files in the `config` directory to suit your application needs.
 4. Start building your application by creating controllers, models, and views in the appropriate directories.
@@ -40,6 +40,4 @@ Contributions to NexaPHP are welcome! Whether it's bug fixes, feature enhancemen
 NexaPHP is open-source software licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute NexaPHP for your own projects.
 
 ## Stay Connected
-
-Follow us on Twitter [@NexaPHP](https://twitter.com/NexaPHP) for updates and announcements. Join our community on GitHub to participate in discussions and contribute to the development of NexaPHP.
-
+You can find me on [Ravi Kishan](https://www.ravikishan.me/)
