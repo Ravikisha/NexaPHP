@@ -3,3 +3,5 @@
 *.iml
 *.iws
 .vscode/
+.env
+.env.example
