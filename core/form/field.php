@@ -4,37 +4,27 @@ namespace App\core\form;
 
 use App\core\Model;
 
-class Field
+class Field extends BaseField
 {
 
     public Model $model;
     public string $attribute;
     public string $type;
 
-    public function __construct($model, $attribute)
+    public function __construct(Model $model, string $attribute)
     {
-        $this->model = $model;
-        $this->attribute = $attribute;
+        $this->type = 'text';
+        parent::__construct($model, $attribute);
     }
 
-    public function __toString()
+
+    public function renderInput()
     {
-        return sprintf(
-            '
-            <div class="form-group mb-3">
-                <label>%s</label>
-                <input type="%s" name="%s" value="%s" class="form-control%s">
-                <div class="invalid-feedback">
-                    %s
-                </div>
-            </div>
-        ',
-            $this->model->getLabel($this->attribute),
+        return sprintf('<input type="%s" class="form-control%s" name="%s" value="%s">',
             $this->type,
+            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
             $this->attribute,
             $this->model->{$this->attribute},
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
-            $this->model->getFirstError($this->attribute)
         );
     }
 
