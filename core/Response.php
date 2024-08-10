@@ -8,17 +8,15 @@ namespace App\core;
  * @package core
  */
 
-class Response
-{
-    /**
-     * Set the response status code
-     * @param int $code
-     * @return void
-     */
-    public function setStatusCode(int $code)
-    {
-        http_response_code($code);
-    }
-
-    
-}
+ class Response
+ {
+     public function statusCode(int $code)
+     {
+         http_response_code($code);
+     }
+ 
+     public function redirect($url)
+     {
+         header("Location: $url");
+     }
+ }

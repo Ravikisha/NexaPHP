@@ -1,6 +1,9 @@
 <?php
 
-namespace App\core;
+namespace App\core\db;
+
+use App\core\Application;
+use App\core\Model;
 
 abstract class DBModel extends Model
 {

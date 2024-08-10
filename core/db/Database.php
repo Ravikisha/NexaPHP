@@ -1,6 +1,8 @@
 <?php
 
-namespace App\core;
+namespace App\core\db;
+
+use App\core\Application;
 
 class Database {
     public \PDO $pdo;

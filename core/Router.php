@@ -11,125 +11,120 @@
 
 namespace App\core;
 
+use App\core\exception\NotFoundException;
+
 class Router
 {
+    private Request $request;
+    private Response $response;
+    private array $routeMap = [];
 
-    public Request $request;
-    public Response $response;
-    protected array $routes = [];
-
-    /**
-     * Router constructor
-     * @param Request $request
-     * @param Response $response
-     * @return void
-     */
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
         $this->response = $response;
     }
-    /**
-     * Define a get request
-     * @param string $path
-     * @param callable|string $callback
-     * @return void
-     */
-    public function get($path, $callback)
+
+    public function get(string $url, $callback)
     {
-        $this->routes['get'][$path] = $callback;
+        $this->routeMap['get'][$url] = $callback;
+    }
+
+    public function post(string $url, $callback)
+    {
+        $this->routeMap['post'][$url] = $callback;
     }
 
     /**
-     * Define a post request
-     * @param string $path
-     * @param callable $callback
-     * @return void
+     * @return array
      */
-    public function post($path, $callback)
+    public function getRouteMap($method): array
     {
-        $this->routes['post'][$path] = $callback;
+        return $this->routeMap[$method] ?? [];
     }
 
-    /**
-     * Resolve the route
-     * @return string
-     */
-    public function resolve()
+    public function getCallback()
     {
+        $method = $this->request->getMethod();
+        $url = $this->request->getUrl();
+        // Trim slashes
+        $url = trim($url, '/');
 
-        $path = $this->request->getPath();
-        $method = $this->request->method();
-        $callback = $this->routes[$method][$path] ?? false;
-        if ($callback === false) {
-            $this->response->setStatusCode(404);
-            return $this->renderView("_404");
+        // Get all routes for current request method
+        $routes = $this->getRouteMap($method);
+
+        $routeParams = false;
+
+        // Start iterating registed routes
+        foreach ($routes as $route => $callback) {
+            // Trim slashes
+            $route = trim($route, '/');
+            $routeNames = [];
+
+            if (!$route) {
+                continue;
+            }
+
+            // Find all route names from route and save in $routeNames
+            if (preg_match_all('/\{(\w+)(:[^}]+)?}/', $route, $matches)) {
+                $routeNames = $matches[1];
+            }
+
+            // Convert route name into regex pattern
+            $routeRegex = "@^" . preg_replace_callback('/\{\w+(:([^}]+))?}/', fn($m) => isset($m[2]) ? "({$m[2]})" : '(\w+)', $route) . "$@";
+
+            // Test and match current route against $routeRegex
+            if (preg_match_all($routeRegex, $url, $valueMatches)) {
+                $values = [];
+                for ($i = 1; $i < count($valueMatches); $i++) {
+                    $values[] = $valueMatches[$i][0];
+                }
+                $routeParams = array_combine($routeNames, $values);
+
+                $this->request->setRouteParams($routeParams);
+                return $callback;
+            }
         }
 
+        return false;
+    }
+
+    public function resolve()
+    {
+        $method = $this->request->getMethod();
+        $url = $this->request->getUrl();
+        $callback = $this->routeMap[$method][$url] ?? false;
+        if (!$callback) {
+
+            $callback = $this->getCallback();
+
+            if ($callback === false) {
+                throw new NotFoundException();
+            }
+        }
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
-
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+            $controller = new $callback[0];
+            $controller->action = $callback[1];
+            Application::$app->controller = $controller;
+            $middlewares = $controller->getMiddlewares();
+            foreach ($middlewares as $middleware) {
+                $middleware->execute();
+            }
+            $callback[0] = $controller;
         }
-
         return call_user_func($callback, $this->request, $this->response);
     }
 
-    /**
-     * Render a view
-     * @param string $view
-     * @param array $params
-     * @return string
-     */
     public function renderView($view, $params = [])
     {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view, $params);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        return Application::$app->view->renderView($view, $params);
     }
 
-    /**
-     * Render content
-     * @param string $viewContent
-     * @return string
-     */
-    public function renderContent($viewContent)
+    public function renderViewOnly($view, $params = [])
     {
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    /**
-     * Layout content
-     * @param string $layout
-     * @return string
-     */
-    public function layoutContent($layout = null)
-    {
-        $layout = $layout ?? Application::$app->controller->layout;
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
-        return ob_get_clean();
-    }
-
-    /**
-     * Render only view
-     * @param string $view
-     * @param array $params
-     * @return string
-     */
-    public function renderOnlyView($view, $params)
-    {
-
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
-
-        ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
-        return ob_get_clean();
+        return Application::$app->view->renderViewOnly($view, $params);
     }
 }
