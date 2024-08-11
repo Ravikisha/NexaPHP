@@ -16,5 +16,21 @@
     ],
     "license": "MIT",
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "keywords": [
+        "php",
+        "framework",
+        "routing",
+        "http",
+        "restful",
+        "json",
+        "xml",
+        "html",
+        "text",
+        "csv",
+        "nextphp",
+        "database",
+        "orm"
+    ],
+    "version": "1.0.0"
 }
