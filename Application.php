@@ -1,13 +1,13 @@
 <?php
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
-use ravikisha\nextphp\db\Database;
+use ravikisha\nexaphp\db\Database;
 
 /**
  * Class Application
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package ravikisha\nextphp
+ * @package ravikisha\nexaphp
  * @property Router $router
  * @property Request $request
  * @property Response $response

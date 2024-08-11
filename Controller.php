@@ -1,16 +1,16 @@
 <?php
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
 /**
  * Controller class
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package ravikisha\nextphp
+ * @package ravikisha\nexaphp
  * @abstract
  * @property string $layout
  */
 
-use ravikisha\nextphp\middlewares\BaseMiddleware;
+use ravikisha\nexaphp\middlewares\BaseMiddleware;
 
 abstract class Controller
 {
@@ -22,7 +22,7 @@ abstract class Controller
     public string $action = '';
 
     /**
-     * @var \ravikisha\nextphp\middlewares\BaseMiddleware[]
+     * @var \ravikisha\nexaphp\middlewares\BaseMiddleware[]
      */
     protected array $middlewares = [];
 
@@ -54,7 +54,7 @@ abstract class Controller
 
     /**
      * Get the middlewares
-     * @return \ravikisha\nextphp\middlewares\BaseMiddleware[]
+     * @return \ravikisha\nexaphp\middlewares\BaseMiddleware[]
      */
     public function getMiddlewares(): array
     {

@@ -3,15 +3,15 @@
 /**
  * Class Application
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package ravikisha\nextphp
+ * @package ravikisha\nexaphp
  * @property Request $request
  * @property Response $response
  * @property array $routes
  */
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
-use ravikisha\nextphp\exception\NotFoundException;
+use ravikisha\nexaphp\exception\NotFoundException;
 
 class Router
 {

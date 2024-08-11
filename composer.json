@@ -1,10 +1,10 @@
 {
-    "name": "ravikisha/nextphp",
+    "name": "ravikisha/nexaphp",
     "description": "NexaPHP is a lightweight and flexible MVC (Model-View-Controller) framework for PHP, designed to streamline the development of web applications. With NexaPHP, you can quickly build scalable and maintainable PHP applications by separating concerns and promoting code organization.",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Ravikisha\\Nextphp\\": "."
+            "Ravikisha\\Nexaphp\\": "."
         }
     },
     "authors": [

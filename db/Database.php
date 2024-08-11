@@ -1,8 +1,8 @@
 <?php
 
-namespace ravikisha\nextphp\db;
+namespace ravikisha\nexaphp\db;
 
-use ravikisha\nextphp\Application;
+use ravikisha\nexaphp\Application;
 
 class Database {
     public \PDO $pdo;

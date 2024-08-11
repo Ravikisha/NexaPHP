@@ -1,12 +1,12 @@
 <?php
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
 
 /**
  * Model class
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package ravikisha\nextphp
+ * @package ravikisha\nexaphp
  * @abstract
  * @property array $errors
  */

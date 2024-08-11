@@ -1,9 +1,9 @@
 <?php
 
-namespace ravikisha\nextphp\middlewares;
+namespace ravikisha\nexaphp\middlewares;
 
-use ravikisha\nextphp\Application;
-use ravikisha\nextphp\exception\ForbiddenException;
+use ravikisha\nexaphp\Application;
+use ravikisha\nexaphp\exception\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware
 {

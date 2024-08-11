@@ -1,6 +1,6 @@
 <?php
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
 class View
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ravikisha\nextphp;
+namespace ravikisha\nexaphp;
 
-use ravikisha\nextphp\db\DBModel;
+use ravikisha\nexaphp\db\DBModel;
 
 abstract class UserModel extends DBModel
 {
