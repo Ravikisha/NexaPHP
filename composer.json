@@ -10,9 +10,11 @@
     "authors": [
         {
             "name": "Ravi Kishan",
-            "email": "ravikishan63392@gmail.com"
+            "email": "ravikishan63392@gmail.com",
+            "homepage": "https://www.ravikishan.me"
         }
     ],
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {}
 }
