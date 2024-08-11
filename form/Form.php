@@ -1,8 +1,8 @@
 <?php
 
-namespace App\core\form;
+namespace ravikisha\nextphp\form;
 
-use App\core\Model;
+use ravikisha\nextphp\Model;
 
 class Form
 {

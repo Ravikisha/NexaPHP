@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core\form;
+namespace ravikisha\nextphp\form;
 
 
 class TextareaField extends BaseField

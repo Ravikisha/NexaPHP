@@ -1,8 +1,8 @@
 <?php
 
-namespace App\core\exception;
+namespace ravikisha\nextphp\exception;
 
-use App\core\Application;
+use ravikisha\nextphp\Application;
 
 class ForbiddenException extends \Exception
 {

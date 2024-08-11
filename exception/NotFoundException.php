@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core\exception;
+namespace ravikisha\nextphp\exception;
 
 class NotFoundException extends \Exception
 {

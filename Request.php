@@ -1,11 +1,11 @@
 <?php
 
-namespace App\core;
+namespace ravikisha\nextphp;
 
 /**
  * Class Application
  * @author Ravi Kishan <@Ravikisha> <ravikishan63392@gmail.com>
- * @package App\core
+ * @package ravikisha\nextphp
  */
 
 class Request

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core\middlewares;
+namespace ravikisha\nextphp\middlewares;
 
 
 abstract class BaseMiddleware

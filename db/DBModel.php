@@ -1,9 +1,9 @@
 <?php
 
-namespace App\core\db;
+namespace ravikisha\nextphp\db;
 
-use App\core\Application;
-use App\core\Model;
+use ravikisha\nextphp\Application;
+use ravikisha\nextphp\Model;
 
 abstract class DBModel extends Model
 {
